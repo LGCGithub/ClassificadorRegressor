@@ -36,8 +36,8 @@ if os.path.isfile("modelos\\regressor1.h5") is False:
 
     model.summary()
 
-    model.compile(optimizer=adam_v2.Adam(learning_rate=0.01), loss='mean_squared_error')
-    model.fit(x=train_samples, y=train_labels, validation_split=0.3, batch_size=10, epochs=200, shuffle=True, verbose=2)
+    model.compile(optimizer=adam_v2.Adam(learning_rate=0.001), loss='mean_squared_error')
+    model.fit(x=train_samples, y=train_labels, validation_split=0.3, batch_size=10, epochs=300, shuffle=True, verbose=2)
 
     model.save("modelos\\regressor1.h5")
 else:
