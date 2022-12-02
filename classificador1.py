@@ -100,4 +100,3 @@ test_labels_onehot = np.argmax(test_labels_onehot, axis=1)
 
 print("Accuracy: ", accuracy_score(test_labels_onehot, predictions))
 print("f-measure (weighted):", f1_score(test_labels_onehot, predictions, average="weighted"))
-
