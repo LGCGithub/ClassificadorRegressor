@@ -41,7 +41,7 @@ model = Sequential([
 
 model.summary()
 
-model.compile(optimizer=adam_v2.Adam(learning_rate=0.001), loss=root_mean_squared_error)
+model.compile(optimizer=adam_v2.Adam(learning_rate=0.001), loss=root_mean_squared_error, metrics=["mean_absolute_error", "mean_squared_logarithmic_error", "mean_squared_error"])
 model.fit(x=train_samples, y=train_labels, validation_split=0.3, batch_size=10, epochs=300, shuffle=True, verbose=2)
 
 
@@ -59,4 +59,9 @@ predictions = model.predict(x=test_samples, batch_size=1, verbose=2)
 
 predictions = predictions.reshape(1, -1)
 
-print("RMSE: ", np.sqrt(np.mean(np.square(predictions - test_labels))))
+from tensorflow.python.keras.metrics import mean_absolute_error, mean_squared_logarithmic_error, mean_squared_error
+
+print('*************** Evaluation on New Data ***************')
+print("Mean Absolute Error: ", mean_absolute_error(predictions, test_labels).numpy())
+print("Mean Squared Logarithmic Error: ", mean_squared_logarithmic_error(predictions, test_labels).numpy())
+print("Mean Squared Error: ", mean_squared_error(predictions, test_labels).numpy())
